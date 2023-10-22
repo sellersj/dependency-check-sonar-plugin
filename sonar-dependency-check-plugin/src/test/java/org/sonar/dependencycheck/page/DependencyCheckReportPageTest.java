@@ -1,6 +1,6 @@
 /*
  * Dependency-Check Plugin for SonarQube
- * Copyright (C) 2015-2021 dependency-check
+ * Copyright (C) 2015-2023 dependency-check
  * philipp.dallig@gmail.com
  *
  * This program is free software; you can redistribute it and/or
@@ -33,7 +33,6 @@ class DependencyCheckReportPageTest {
         DependencyCheckReportPage reportPage = new DependencyCheckReportPage();
         Context context = new Context();
         reportPage.define(context);
-        System.out.println(context.getPages().size());
         Page report_page = context.getPages().iterator().next();
         assertEquals("Dependency-Check", report_page.getName());
         assertEquals("dependencycheck/report_page", report_page.getKey());

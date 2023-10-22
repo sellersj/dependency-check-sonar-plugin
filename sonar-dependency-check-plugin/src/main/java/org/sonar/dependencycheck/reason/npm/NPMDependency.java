@@ -1,6 +1,6 @@
 /*
  * Dependency-Check Plugin for SonarQube
- * Copyright (C) 2015-2021 dependency-check
+ * Copyright (C) 2015-2023 dependency-check
  * philipp.dallig@gmail.com
  *
  * This program is free software; you can redistribute it and/or
@@ -17,53 +17,17 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 package org.sonar.dependencycheck.reason.npm;
 
-public class NPMDependency {
+import org.sonar.dependencycheck.reason.SoftwareDependency;
 
-    private final String name;
-    private final String version;
-    private final int startLineNr;
-    private final int endLineNr;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 
-    /**
-     * @param name
-     * @param version
-     * @param startLineNr
-     * @param endLineNr
-     */
-    public NPMDependency(String name, String version, int startLineNr, int endLineNr) {
-        this.name = name;
-        this.version = version;
-        this.startLineNr = startLineNr;
-        this.endLineNr = endLineNr;
-    }
+public class NPMDependency extends SoftwareDependency {
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @return the version
-     */
-    public String getVersion() {
-        return version;
-    }
-
-    /**
-     * @return the startLineNr
-     */
-    public int getStartLineNr() {
-        return startLineNr;
-    }
-
-    /**
-     * @return the endLineNr
-     */
-    public int getEndLineNr() {
-        return endLineNr;
+    public NPMDependency(@NonNull String name, @Nullable String version) {
+        super(name, version);
     }
 }

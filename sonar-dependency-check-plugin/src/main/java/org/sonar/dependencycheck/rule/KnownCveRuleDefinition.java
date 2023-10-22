@@ -1,6 +1,6 @@
 /*
  * Dependency-Check Plugin for SonarQube
- * Copyright (C) 2015-2021 dependency-check
+ * Copyright (C) 2015-2023 dependency-check
  * philipp.dallig@gmail.com
  *
  * This program is free software; you can redistribute it and/or
@@ -19,13 +19,13 @@
  */
 package org.sonar.dependencycheck.rule;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.rule.Severity;
 import org.sonar.api.rules.RuleType;
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.dependencycheck.base.DependencyCheckConstants;
-
-import javax.annotation.ParametersAreNonnullByDefault;
 
 public class KnownCveRuleDefinition implements RulesDefinition {
 
@@ -51,7 +51,8 @@ public class KnownCveRuleDefinition implements RulesDefinition {
         rule.setName("Using Components with Known Vulnerabilities");
         rule.setSeverity(Severity.MAJOR);
         rule.setStatus(RuleStatus.READY);
-        rule.addOwaspTop10(OwaspTop10.A9);
+        rule.addOwaspTop10(OwaspTop10Version.Y2017, OwaspTop10.A9);
+        rule.addOwaspTop10(OwaspTop10Version.Y2021, OwaspTop10.A6);
         rule.addCwe(CWE_937);
 
         String description = "<p>Components, such as libraries, frameworks, and other software modules, "

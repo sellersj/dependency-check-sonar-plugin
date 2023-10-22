@@ -1,6 +1,6 @@
 /*
  * Dependency-Check Plugin for SonarQube
- * Copyright (C) 2015-2021 dependency-check
+ * Copyright (C) 2015-2023 dependency-check
  * philipp.dallig@gmail.com
  *
  * This program is free software; you can redistribute it and/or
@@ -21,17 +21,6 @@ package org.sonar.dependencycheck.base;
 
 public final class DependencyCheckConstants {
 
-    /**
-     * @deprecated Please use the JSON Report
-     */
-    @Deprecated
-    public static final String XML_REPORT_PATH_PROPERTY = "sonar.dependencyCheck.xmlReportPath";
-
-    /**
-     * @deprecated Please use the JSON Report
-     */
-    @Deprecated
-    public static final String DEPRECTED_XML_REPORT_PATH_PROPERTY = "sonar.dependencyCheck.reportPath";
     public static final String JSON_REPORT_PATH_PROPERTY = "sonar.dependencyCheck.jsonReportPath";
     public static final String HTML_REPORT_PATH_PROPERTY = "sonar.dependencyCheck.htmlReportPath";
     public static final String SEVERITY_BLOCKER = "sonar.dependencyCheck.severity.blocker";
@@ -48,11 +37,6 @@ public final class DependencyCheckConstants {
     public static final Float SEVERITY_MAJOR_DEFAULT = 4.0f;
     public static final Float SEVERITY_MINOR_DEFAULT = 0.0f;
 
-    /**
-     * @deprecated Please use the JSON Report
-     */
-    @Deprecated
-    public static final String XML_REPORT_PATH_DEFAULT = "${WORKSPACE}/dependency-check-report.xml";
     public static final String JSON_REPORT_PATH_DEFAULT = "${WORKSPACE}/dependency-check-report.json";
     public static final String HTML_REPORT_PATH_DEFAULT = "${WORKSPACE}/dependency-check-report.html";
     public static final Boolean SUMMARIZE_PROPERTY_DEFAULT = Boolean.FALSE;

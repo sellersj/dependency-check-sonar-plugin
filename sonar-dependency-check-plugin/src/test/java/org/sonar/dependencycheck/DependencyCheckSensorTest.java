@@ -1,6 +1,6 @@
 /*
  * Dependency-Check Plugin for SonarQube
- * Copyright (C) 2015-2021 dependency-check
+ * Copyright (C) 2015-2023 dependency-check
  * philipp.dallig@gmail.com
  *
  * This program is free software; you can redistribute it and/or
@@ -54,7 +54,6 @@ class DependencyCheckSensorTest {
     private PathResolver pathResolver;
     private DependencyCheckSensor sensor;
 
-    private File sampleXmlReport;
     private File sampleJsonReport;
     private File sampleHtmlReport;
     private File sampleJsonExceptionReport;
@@ -66,10 +65,6 @@ class DependencyCheckSensorTest {
         this.sensor = new DependencyCheckSensor(fileSystem, this.pathResolver, null);
 
         // load some sample reports
-        final URL sampleXmlResourceURI = getClass().getClassLoader().getResource("reportMultiModuleMavenExample/dependency-check-report.xml");
-        assertNotNull(sampleXmlResourceURI);
-        this.sampleXmlReport = Paths.get(sampleXmlResourceURI.toURI()).toFile();
-
         final URL sampleJsonResourceURI = getClass().getClassLoader().getResource("reportMultiModuleMavenExample/dependency-check-report.json");
         assertNotNull(sampleJsonResourceURI);
         this.sampleJsonReport = Paths.get(sampleJsonResourceURI.toURI()).toFile();
@@ -105,7 +100,7 @@ class DependencyCheckSensorTest {
 
         when(pathResolver.relativeFile(Mockito.any(File.class), Mockito.eq(config.get(DependencyCheckConstants.JSON_REPORT_PATH_PROPERTY).orElse(DependencyCheckConstants.JSON_REPORT_PATH_DEFAULT)))).thenReturn(sampleJsonReport);
         sensor.execute(context);
-        assertEquals(45, context.allIssues().size());
+        assertEquals(40, context.allIssues().size());
     }
 
     @Test
@@ -133,7 +128,7 @@ class DependencyCheckSensorTest {
 
         when(pathResolver.relativeFile(Mockito.any(File.class), Mockito.eq(config.get(DependencyCheckConstants.JSON_REPORT_PATH_PROPERTY).orElse(DependencyCheckConstants.JSON_REPORT_PATH_DEFAULT)))).thenReturn(sampleJsonReport);
         sensor.execute(context);
-        assertEquals(45, context.allIssues().size());
+        assertEquals(40, context.allIssues().size());
         for (Issue issue : context.allIssues()) {
             assertEquals(DependencyCheckConstants.RULE_KEY, issue.ruleKey().rule());
         }
@@ -195,7 +190,7 @@ class DependencyCheckSensorTest {
 
         when(pathResolver.relativeFile(Mockito.any(File.class), Mockito.eq(config.get(DependencyCheckConstants.JSON_REPORT_PATH_PROPERTY).orElse(DependencyCheckConstants.JSON_REPORT_PATH_DEFAULT)))).thenReturn(sampleJsonReport);
         sensor.execute(context);
-        assertEquals(7, context.allIssues().size());
+        assertEquals(8, context.allIssues().size());
     }
 
     @Test
@@ -236,27 +231,6 @@ class DependencyCheckSensorTest {
     }
 
     @Test
-    @Deprecated
-    void shouldAddWarningsWithXMLReportPlugin() {
-        final SensorContextTester context = SensorContextTester.create(new File(""));
-        // Plugin Configuration
-        MapSettings settings = new MapSettings();
-        settings.setProperty(DependencyCheckConstants.XML_REPORT_PATH_PROPERTY, "dependency-check-report.xml");
-        Configuration config = settings.asConfig();
-        context.setSettings(settings);
-
-        // Sensor with analysisWarnings
-        FileSystem fileSystem = mock(FileSystem.class, RETURNS_DEEP_STUBS);
-        List<String> analysisWarnings = new ArrayList<>();
-        sensor = new DependencyCheckSensor(fileSystem, this.pathResolver, analysisWarnings::add);
-
-        when(pathResolver.relativeFile(Mockito.any(File.class), Mockito.eq(config.get(DependencyCheckConstants.XML_REPORT_PATH_PROPERTY).orElse(DependencyCheckConstants.XML_REPORT_PATH_DEFAULT)))).thenReturn(sampleXmlReport);
-        sensor.execute(context);
-        assertTrue(StringUtils.contains(analysisWarnings.get(0), "The XML report is deprecated"));
-        assertEquals(1, analysisWarnings.size());
-    }
-
-    @Test
     void shouldAddSecurityHotspots() {
         final SensorContextTester context = SensorContextTester.create(new File(""));
         // Plugin Configuration
@@ -272,7 +246,7 @@ class DependencyCheckSensorTest {
                                 .orElse(DependencyCheckConstants.JSON_REPORT_PATH_DEFAULT))))
                                         .thenReturn(sampleJsonReport);
         sensor.execute(context);
-        assertEquals(45, context.allIssues().size());
+        assertEquals(40, context.allIssues().size());
         for (Issue issue : context.allIssues()) {
             assertEquals(DependencyCheckConstants.RULE_KEY_WITH_SECURITY_HOTSPOT, issue.ruleKey().rule());
         }

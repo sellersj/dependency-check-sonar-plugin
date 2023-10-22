@@ -1,6 +1,6 @@
 /*
  * Dependency-Check Plugin for SonarQube
- * Copyright (C) 2015-2021 dependency-check
+ * Copyright (C) 2015-2023 dependency-check
  * philipp.dallig@gmail.com
  *
  * This program is free software; you can redistribute it and/or
@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.junit.jupiter.api.Test;
-import org.sonar.dependencycheck.reason.npm.NPMDependency;
+import org.sonar.dependencycheck.reason.npm.NPMDependencyLocation;
 import org.sonar.dependencycheck.reason.npm.PackageLockModel;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -53,10 +53,10 @@ class NPMParserHelperTest {
 
     private void checkNPMDependency(PackageLockModel packageLockModel, String name, String version, int startLineNr, int endLineNr) {
         boolean found = false;
-        for (NPMDependency npmDependency : packageLockModel.getDependencies()) {
+        for (NPMDependencyLocation npmDependency : packageLockModel.getDependencies()) {
             if (name.equals(npmDependency.getName())) {
                 found = true;
-                assertEquals(version, npmDependency.getVersion());
+                assertEquals(version, npmDependency.getVersion().get());
                 assertEquals(startLineNr, npmDependency.getStartLineNr());
                 assertEquals(endLineNr, npmDependency.getEndLineNr());
             }

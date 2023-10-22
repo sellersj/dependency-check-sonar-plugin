@@ -1,6 +1,6 @@
 /*
  * Dependency-Check Plugin for SonarQube
- * Copyright (C) 2015-2021 dependency-check
+ * Copyright (C) 2015-2023 dependency-check
  * philipp.dallig@gmail.com
  *
  * This program is free software; you can redistribute it and/or
@@ -67,7 +67,6 @@ class DependencyReasonSearcherTest {
     void checkForDependencyReasons() throws IOException {
         SensorContextTester context = SensorContextTester.create(new File(""));
         MapSettings settings = new MapSettings();
-        settings.setProperty(DependencyCheckConstants.XML_REPORT_PATH_PROPERTY, "dependency-check-report.xml");
         context.setSettings(settings);
         context.fileSystem().add(inputFile("pom.xml"));
         context.fileSystem().add(inputFile("build.gradle"));
@@ -86,7 +85,6 @@ class DependencyReasonSearcherTest {
     void checkForDependencyReasonsMaven() throws IOException {
         SensorContextTester context = SensorContextTester.create(new File(""));
         MapSettings settings = new MapSettings();
-        settings.setProperty(DependencyCheckConstants.XML_REPORT_PATH_PROPERTY, "dependency-check-report.xml");
         context.setSettings(settings);
         context.fileSystem().add(inputFile("pom.xml"));
         DependencyReasonSearcher searcher = new DependencyReasonSearcher(context);
@@ -142,7 +140,6 @@ class DependencyReasonSearcherTest {
     public SensorContextTester checkForDependencyReasonsGradleAbstract(InputFile inputFile) {
         SensorContextTester context = SensorContextTester.create(new File(""));
         MapSettings settings = new MapSettings();
-        settings.setProperty(DependencyCheckConstants.XML_REPORT_PATH_PROPERTY, "dependency-check-report.xml");
         settings.setProperty(DependencyCheckConstants.SUMMARIZE_PROPERTY, Boolean.TRUE);
         context.setSettings(settings);
         context.fileSystem().add(inputFile);

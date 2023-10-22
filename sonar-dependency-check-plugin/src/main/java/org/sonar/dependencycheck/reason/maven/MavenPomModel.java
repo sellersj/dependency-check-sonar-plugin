@@ -1,6 +1,6 @@
 /*
  * Dependency-Check Plugin for SonarQube
- * Copyright (C) 2015-2021 dependency-check
+ * Copyright (C) 2015-2023 dependency-check
  * philipp.dallig@gmail.com
  *
  * This program is free software; you can redistribute it and/or
@@ -37,26 +37,26 @@ import edu.umd.cs.findbugs.annotations.Nullable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MavenPomModel {
-    private final List<MavenDependency> dependencies;
-    private final MavenParent parent;
+    private final List<MavenDependencyLocation> dependencies;
+    private final MavenDependencyLocation parent;
 
     /**
      * @param dependencies
      * @param parent
      */
     @JsonCreator
-    public MavenPomModel(@JsonProperty(value = "dependencies") @JsonDeserialize(using = MavenDependencyDeserializer.class ) @Nullable List<MavenDependency> dependencies,
-                         @JsonProperty(value = "parent") @JsonDeserialize(using = MavenParentDeserializer.class ) @Nullable MavenParent parent) {
+    public MavenPomModel(@JsonProperty(value = "dependencies") @JsonDeserialize(using = MavenDependencyDeserializer.class ) @Nullable List<MavenDependencyLocation> dependencies,
+                         @JsonProperty(value = "parent") @JsonDeserialize(using = MavenParentDeserializer.class ) @Nullable MavenDependencyLocation parent) {
         this.dependencies = dependencies == null ? Collections.emptyList() : dependencies;
         this.parent = parent;
     }
 
     @NonNull
-    public List<MavenDependency> getDependencies() {
+    public List<MavenDependencyLocation> getDependencies() {
         return dependencies;
     }
 
-    public Optional<MavenParent> getParent() {
+    public Optional<MavenDependencyLocation> getParent() {
         return Optional.ofNullable(parent);
     }
 

@@ -1,6 +1,6 @@
 /*
  * Dependency-Check Plugin for SonarQube
- * Copyright (C) 2015-2021 dependency-check
+ * Copyright (C) 2015-2023 dependency-check
  * philipp.dallig@gmail.com
  *
  * This program is free software; you can redistribute it and/or
@@ -39,6 +39,6 @@ class DependencyCheckPluginTest {
         Plugin.Context context = new PluginContextImpl.Builder().setSonarRuntime(runtime).build();
         DependencyCheckPlugin plugin = new DependencyCheckPlugin();
         plugin.define(context);
-        assertEquals(18, context.getExtensions().size());
+        assertEquals(17, context.getExtensions().size());
     }
 }

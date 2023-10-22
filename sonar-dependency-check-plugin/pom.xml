@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.sonarsource.owasp</groupId>
         <artifactId>sonar-dependency-check</artifactId>
-        <version>3.0.2-SNAPSHOT</version>
+        <version>4.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>sonar-dependency-check-plugin</artifactId>
     <packaging>sonar-plugin</packaging>
@@ -15,28 +15,29 @@
         <connection>scm:git:https://github.com/dependency-check/dependency-check-sonar-plugin</connection>
         <developerConnection>scm:git:https://github.com/dependency-check/dependency-check-sonar-plugin</developerConnection>
         <url>https://github.com/dependency-check/dependency-check-sonar-plugin</url>
-        <tag>HEAD</tag>
+        <tag>4.0.0</tag>
     </scm>
 
     <properties>
-        <sonar.version>8.9.0.43852</sonar.version>
+        <sonar.api.version>9.9.0.229</sonar.api.version>
+        <sonar.api.impl.version>9.6.1.59531</sonar.api.impl.version>
         <!-- Configuration for sonar-packaging-maven-plugin -->
         <sonar.pluginClass>org.sonar.dependencycheck.DependencyCheckPlugin</sonar.pluginClass>
         <sonar.pluginName>Dependency-Check</sonar.pluginName>
         <sonar.pluginKey>dependencycheck</sonar.pluginKey>
-        <jackson.version>2.11.3</jackson.version>
-        <spotbugs.version>4.7.1</spotbugs.version>
-        <commons.lang3.version>3.12.0</commons.lang3.version>
+        <jackson.version>2.15.3</jackson.version>
+        <spotbugs.version>4.8.0</spotbugs.version>
+        <commons.lang3.version>3.13.0</commons.lang3.version>
         <!-- Test versions -->
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
-        <mockito.version>4.11.0</mockito.version>
+        <junit.jupiter.version>5.10.0</junit.jupiter.version>
+        <mockito.version>5.6.0</mockito.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.sonarsource.sonarqube</groupId>
+            <groupId>org.sonarsource.api.plugin</groupId>
             <artifactId>sonar-plugin-api</artifactId>
-            <version>${sonar.version}</version>
+            <version>${sonar.api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -89,7 +90,7 @@
         <dependency>
             <groupId>org.sonarsource.sonarqube</groupId>
             <artifactId>sonar-plugin-api-impl</artifactId>
-            <version>${sonar.version}</version>
+            <version>${sonar.api.impl.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -116,7 +117,7 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.12.1</version>
+                <version>1.13.4</version>
                 <executions>
                     <execution>
                         <phase>generate-resources</phase>
@@ -125,7 +126,7 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v16.2.0</nodeVersion>
+                            <nodeVersion>v18.14.2</nodeVersion>
                         </configuration>
                     </execution>
                     <execution>
