@@ -30,7 +30,7 @@
         <commons.lang3.version>3.14.0</commons.lang3.version>
         <!-- Test versions -->
         <junit.jupiter.version>5.10.1</junit.jupiter.version>
-        <mockito.version>5.8.0</mockito.version>
+        <mockito.version>5.9.0</mockito.version>
     </properties>
 
     <dependencies>
@@ -117,7 +117,7 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.13.4</version>
+                <version>1.15.0</version>
                 <executions>
                     <execution>
                         <phase>generate-resources</phase>
