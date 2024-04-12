@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.sonarsource.owasp</groupId>
         <artifactId>sonar-dependency-check</artifactId>
-        <version>5.0.0-SNAPSHOT</version>
+        <version>5.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>sonar-dependency-check-plugin</artifactId>
     <packaging>sonar-plugin</packaging>
@@ -25,12 +25,12 @@
         <sonar.pluginClass>org.sonar.dependencycheck.DependencyCheckPlugin</sonar.pluginClass>
         <sonar.pluginName>Dependency-Check</sonar.pluginName>
         <sonar.pluginKey>dependencycheck</sonar.pluginKey>
-        <jackson.version>2.16.0</jackson.version>
-        <spotbugs.version>4.8.3</spotbugs.version>
+        <jackson.version>2.16.1</jackson.version>
+        <spotbugs.version>4.8.4</spotbugs.version>
         <commons.lang3.version>3.14.0</commons.lang3.version>
         <!-- Test versions -->
-        <junit.jupiter.version>5.10.1</junit.jupiter.version>
-        <mockito.version>5.9.0</mockito.version>
+        <junit.jupiter.version>5.10.2</junit.jupiter.version>
+        <mockito.version>5.11.0</mockito.version>
     </properties>
 
     <dependencies>
